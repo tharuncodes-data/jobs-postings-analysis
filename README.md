@@ -85,7 +85,7 @@ Each dashboard is designed to tell **one clear business story**.
 ---
 
 ## 👤 Author
-**Tarun**  
+**Tharun**  
 Aspiring Data Analyst 
 Skills: SQL, Power BI, Data Analysis  
 
