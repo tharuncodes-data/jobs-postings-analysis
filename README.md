@@ -167,4 +167,4 @@ This project showcases practical analytics capabilities:
 3. Query analytical views:
 
 ```sql
-SELECT * FROM bi_most_valuable_skills;
+SELECT * FROM most_valuable_skills;
