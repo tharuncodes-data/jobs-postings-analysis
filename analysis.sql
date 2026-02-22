@@ -1,5 +1,16 @@
-/*		RUN QUERIES DIRECTLY FROM HERE
+/*	
+	RUN QUERIES DIRECTLY FROM HERE
 
+SELECT * FROM data_job_location
+SELECT * FROM top_data_jobs_skills
+SELECT * FROM skill_demand_percentage
+SELECT * FROM top_tech_paying_skills
+SELECT * FROM avg_salary_by_job
+SELECT * FROM job_postings_over_month
+SELECT * FROM top_hiring_companies
+SELECT * FROM skill_diversity_by_role
+SELECT * FROM kpi_summary 
+SELECT * FROM most_valuable_skills 
 
 */
 
@@ -34,8 +45,10 @@ CREATE TABLE skills_job_dim (
 );
 
 
-/*	Data Jobs Locations	*/
-
+/* =========================================================
+   BUSINESS QUESTION:
+   Which countries show the highest hiring demand for Data, Machine Learning, and Business-related roles?
+   ========================================================= */
 
 CREATE OR REPLACE VIEW data_job_location AS
 SELECT
@@ -58,7 +71,10 @@ ORDER BY
 	job_count DESC;
 
 
-/*	TOP SKILLS FOR DATA JOBS	*/
+/* =========================================================
+   BUSINESS QUESTION:
+    What are the most in-demand technical skills for candidates targeting Data & Machine Learning roles ?
+   ========================================================= */
 
 CREATE OR REPLACE VIEW top_data_jobs_skills AS
 
@@ -81,7 +97,11 @@ ORDER BY
 	demand_count DESC ;
 
 
-/*	SKILL DEMAND %	*/
+/* =========================================================
+   BUSINESS QUESTION:
+    Which skills account for the largest share of hiring demand within each job role ?
+   ========================================================= */
+
 CREATE OR REPLACE VIEW skill_demand_percentage AS
 WITH demand as (
 SELECT
@@ -114,7 +134,11 @@ JOIN for_pct pct ON d.job_title_short = pct.job_title_short
 ORDER BY demand_percentage DESC
 	
 
-/*	TOP TECH PAYING SKILLS	*/
+/* =========================================================
+   BUSINESS QUESTION:
+	 Which skills are associated with higher average salaries while maintaining strong market demand ?
+   ========================================================= */
+	
 CREATE OR REPLACE VIEW top_tech_paying_skills AS
 
 WITH ds AS (SELECT
@@ -139,8 +163,12 @@ GROUP BY
 ORDER BY
 		total_demand DESC 
 
-
-/*	AVERAGE SALARY BY ROLE	*/
+	
+/* =========================================================
+   BUSINESS QUESTION:
+    How does average salary differ across various job categories ?
+   ========================================================= */
+	
 CREATE OR REPLACE VIEW avg_salary_by_job AS
 SELECT
     job_title_short,
@@ -151,7 +179,11 @@ GROUP BY
     job_title_short;
 
 
-/*	JOB POSTINGS OVER TIME	*/
+/* =========================================================
+   BUSINESS QUESTION:
+    How does hiring demand vary across job roles over time ?
+   ========================================================= */
+
 CREATE OR REPLACE VIEW job_postings_over_month AS
 SELECT
     TO_CHAR(job_posted_date,'YYYY-MM') AS job_posted_month,
@@ -164,7 +196,12 @@ GROUP BY
 ORDER BY
     job_posted_month;
 
-/*	TOP HIRING COMPANIES	*/
+
+/* =========================================================
+   BUSINESS QUESTION:
+   	Which companies exhibit the highest hiring demand across job categories?
+   ========================================================= */
+
 CREATE OR REPLACE VIEW top_hiring_companies as
 
 SELECT
@@ -178,10 +215,14 @@ GROUP BY
     c.name,
     j.job_title_short
 ORDER BY
-	job_count DESC
-
-/*	UNIQUE SKILLS FOR EACH JOBS	*/
-CREATE OR REPLACE VIEW bi_skill_diversity_by_role AS
+	job_count DESc
+	
+/* =========================================================
+   BUSINESS QUESTION:
+  	How many unique skills gets related to each jobs ?
+   ========================================================= */
+	
+CREATE OR REPLACE VIEW skill_diversity_by_role AS
 SELECT
     j.job_title_short,
     COUNT(DISTINCT sj.skill_id) AS unique_skill_count
@@ -191,9 +232,14 @@ JOIN skills_job_dim sj
 GROUP BY
     j.job_title_short;
 
-/*	KPI SUMMARY	*/
 
-CREATE OR REPLACE VIEW bi_kpi_summary AS
+/* =========================================================
+   BUSINESS QUESTION:
+    What are the key high-level metrics describing the hiring market?
+   ========================================================= */
+
+
+CREATE OR REPLACE VIEW kpi_summary AS
 SELECT
     COUNT(DISTINCT j.job_id) AS total_jobs,
     COUNT(DISTINCT j.company_id) AS total_companies,
@@ -202,8 +248,13 @@ FROM job_postings_fact j
 LEFT JOIN skills_job_dim sj
     ON j.job_id = sj.job_id;
 
-/*	MOST VALUABLE SKILLS	*/
-CREATE OR REPLACE VIEW bi_most_valuable_skills AS
+
+/* =========================================================
+   BUSINESS QUESTION:
+    Which skills contribute the most to hiring demand within each job role, and how do they relate to salary levels?
+   ========================================================= */
+
+CREATE OR REPLACE VIEW most_valuable_skills AS
 WITH skill_stats AS (
     SELECT
         j.job_title_short,
@@ -238,4 +289,5 @@ JOIN role_totals rt
     ON ss.job_title_short = rt.job_title_short
 ORDER BY
 	demand_percentage DESC;
+
 
