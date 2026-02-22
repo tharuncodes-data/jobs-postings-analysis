@@ -1,102 +1,170 @@
-# 📊 Job Market Analysis for Data Roles (SQL + Power BI)
+# 📊 Labor Market Intelligence Analysis (SQL Project)
 
 ## 📌 Project Overview
-This project analyzes real-world job postings data to uncover **hiring trends, skill demand, salary patterns, and company hiring behavior** in the data job market.
 
-The goal of this project is to demonstrate **end-to-end data analytics skills**:
-- Writing analytical SQL queries on a relational database  
-- Creating reusable **SQL views** for analysis  
-- Building **interactive Power BI dashboards** for business insights  
+This project explores a job postings dataset using SQL to uncover insights into:
 
----
+- Global hiring demand  
+- Skill requirements & workforce trends  
+- Salary distribution & compensation patterns  
+- Skill valuation & market economics  
+- Company-level hiring behavior  
 
-## 🎯 Business Questions Answered
-This project answers **14 recruiter-focused business questions**, including:
-
-1. Where are data jobs geographically concentrated?
-2. Which skills are most in demand for data roles?
-3. How does skill demand vary across different data job titles?
-4. Which skills are associated with higher average salaries?
-5. What is the relationship between skill demand and salary?
-6. How does job demand vary by job type?
-7. How has demand for data jobs changed over time?
-8. Which companies are hiring the most for data roles?
-9. What are the most common **skill combinations** required in data jobs?
-10. How do skill requirements differ across job roles? 
-11. Which data roles show growth trends over time?
-12. What insights can job seekers use to prioritize skill learning?
+The objective is to simulate a **real-world Business Intelligence / Talent Analytics workflow** by transforming raw job data into analytical views.
 
 ---
 
-## 🗄️ Dataset & Database Schema
-The analysis uses a **relational database structure**, similar to real-world company systems:
+## 🎯 Business Problem
 
-- `job_postings_fact`
-- `skills_job_dim`
-- `skills_dim`
-- `company_dim`
+Modern job markets are dynamic and competitive.
 
-This approach avoids flat-file analysis and reflects how data is handled in production environments.
+Understanding:
 
----
+✔ Which roles are in demand  
+✔ Which skills drive hiring decisions  
+✔ Which competencies command higher salaries  
+✔ Which companies are expanding their workforce  
 
-## 🧠 SQL Analysis
-- Extensive use of **JOINs, CTEs, aggregations, and filtering**
-- Created **SQL views** for each analytical question
-- Queries focus on **business logic**
-- Views were directly consumed by Power BI
+…is critical for:
 
-Example analyses include:
-- Skill demand analysis
-- Salary vs skill analysis
-- Job trends over time
-- Skill combination analysis
+- Job seekers  
+- Recruiters  
+- Workforce planners  
+- Business analysts  
+
+This analysis models the hiring ecosystem using structured SQL queries.
 
 ---
 
-## 📈 Power BI Dashboards
-SQL views were imported into **Power BI** to create interactive dashboards featuring:
+## 🎯 Key Business Questions Answered
 
-- 🌍 Geographic maps for job locations
-- 📊 Bar & column charts for skill demand and company hiring
-- 📈 Line charts for job posting trends over time
-- 🧩 Matrix visuals for skill combinations
-- 🎛️ Slicers for job role and job type filtering
+### 🌍 Hiring Demand & Market Trends
 
-Each dashboard is designed to tell **one clear business story**.
+- Which countries exhibit the highest hiring demand?  
+- How does job demand vary across roles?  
+- How has hiring activity evolved over time?  
+- Are there observable hiring trends or patterns?  
 
 ---
 
-## 🔍 Key Insights
-- **SQL and Python dominate demand** across nearly all data roles.
-- Niche or specialized skills appear in higher-paying roles but have lower demand.
-- Hiring is concentrated among a small number of companies.
-- Data job demand changes over time, indicating market-driven hiring cycles.
-- Employers value **skill combinations**, not just individual tools.
+### 🧠 Skill Demand & Workforce Insights
+
+- Which skills are most frequently requested?  
+- Which skills dominate hiring requirements within roles?  
+- Which roles require the most diverse skillsets?  
+- How does skill composition vary across job categories?  
 
 ---
 
-## 🛠️ Tools & Technologies
-- **PostgreSQL** – Database & querying  
-- **SQL** – Data analysis and transformations  
-- **Power BI** – Data visualization & dashboards  
-- **GitHub** – Version control & project sharing  
+### 💰 Salary & Compensation Analytics
+
+- Which job roles command higher compensation premiums?  
+- Which skills are associated with higher salaries?  
+- Which skills offer the best demand-to-salary value?  
 
 ---
 
-## 👤 Author
-**Tharun**  
-Aspiring Data Analyst 
-Skills: SQL, Power BI, Data Analysis  
+### 🏆 Skill Valuation & Market Economics
+
+- Which skills account for the largest share of hiring demand within roles?  
+- Which competencies provide the strongest market value?  
 
 ---
 
-## 🚀 Why This Project Matters
-This project demonstrates:
-- Real-world SQL-based data analysis
-- Transition from raw data → insights → dashboards
-- Analytical thinking aligned with business decision-making
+### 🏢 Company Hiring Insights
+
+- Which companies demonstrate the highest hiring activity?  
+- How is hiring demand distributed across job categories within companies?  
 
 ---
 
-⭐ If you find this project useful, feel free to star the repository!
+## 📈 Analytical Approach
+
+The analysis was conducted entirely using SQL with:
+
+✔ Multi-table joins  
+✔ Aggregations & grouping  
+✔ Common Table Expressions (CTEs)  
+✔ Percentage-based metrics  
+✔ Time-series analysis  
+✔ Compensation modeling  
+✔ KPI summarization  
+
+Each query was designed to answer a **specific business question**, rather than simply perform technical operations.
+
+---
+
+## 🧱 Data Model
+
+The dataset follows a relational structure:
+
+- **job_postings_fact** → Job-level information  
+- **skills_job_dim** → Job-to-skill mapping  
+- **skills_dim** → Skill definitions  
+- **company_dim** → Company information  
+
+This design enables realistic Business Intelligence analysis.
+
+---
+
+## 📊 Analytical Views Created
+
+The project transforms raw data into reusable analytical layers:
+
+| View | Business Insight |
+|------|------------------|
+| `data_job_location` | Hiring demand by country & work arrangement |
+| `top_data_jobs_skills` | Most in-demand skills |
+| `skill_demand_percentage` | Skill importance within roles |
+| `top_tech_paying_skills` | Demand vs salary for skills |
+| `avg_salary_by_job` | Compensation benchmarking by role |
+| `job_postings_over_month` | Hiring trends over time |
+| `top_hiring_companies` | Company-level hiring activity |
+| `bi_skill_diversity_by_role` | Role complexity analysis |
+| `bi_kpi_summary` | Executive-level KPIs |
+| `bi_most_valuable_skills` | Skill valuation across roles |
+
+---
+
+## 💡 Example Insights Derived
+
+This analysis enables discovery of:
+
+✔ High-demand job roles  
+✔ Dominant technical competencies  
+✔ Salary premiums across roles & skills  
+✔ Skill concentration patterns  
+✔ Workforce demand trends  
+✔ Company hiring intensity  
+
+---
+
+## 🛠 Tools & Technologies
+
+- **SQL (PostgreSQL)**  
+- Relational Data Modeling  
+- Analytical Query Design  
+
+---
+
+## 🚀 Skills Demonstrated
+
+This project showcases practical analytics capabilities:
+
+✅ Business Intelligence Thinking  
+✅ Data Aggregation & Transformation  
+✅ Workforce / Market Analysis  
+✅ Compensation Analytics  
+✅ Skill Valuation Modeling  
+✅ Trend & Demand Analysis  
+
+---
+
+## ▶️ How to Run
+
+1. Load the dataset into PostgreSQL  
+2. Execute queries from the SQL file  
+3. Query analytical views:
+
+```sql
+SELECT * FROM bi_most_valuable_skills;
